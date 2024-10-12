@@ -23,15 +23,15 @@
                 <h2 id="mainTitle">DataView</h2>
             </div>
             <ul id="menuItens">
-                <li>
+                <li id="tela">
                     <i class="material-icons">query_stats</i>
                     <h4 id="titulo">Dashboard</h4>
                 </li>
-                <li>
+                <li id="tela2">
                     <i class="material-icons">cloud_upload</i>
                     <h4 id="titulo2">Upload CSV</h4>
                 </li>
-                <li>
+                <li id="tela3">
                     <i class="material-icons">cloud_download</i>
                     <h4 id="titulo3">Download</h4>
                 </li>
@@ -55,14 +55,14 @@
                     <i class="fa-solid fa-circle-half-stroke"></i>
                     <h4 id="titulo5">Tema</h4>
                 </li>
-                <li>
+                <li onclick="sair()">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     <h4 id="titulo6">Sair</h4>
                 </li>
             </ul>
         </nav>
     </div>
-    <div class="highContentNex">
+    <div class="highContentNex screen active" id="Dashboard">
         <div class="NamePage">
             <div class="currentPage">Dashboard Gás & Oléo</div>
             <div class="periodo">
@@ -74,7 +74,9 @@
                     style="border-top-right-radius: 35px; border-bottom-right-radius: 35px;">1M</button>
             </div>
             <div class="information">
-                <div class="perfil"></div>
+                <div class="perfil">
+                    <i class="material-icons" style="font-size: 48px;">person</i>
+                </div>
             </div>
         </div>
         <div class="Kpis">
@@ -105,22 +107,54 @@
         </div>
         <div class="dadosAtuais">
             <div class="historico">
-                <canvas id="myChart"></canvas>
+                <h1 class="tituloGraph">Médias por Hora dos Sensores</h1>
+                <canvas id="myChart" width="1000" height="400"></canvas>
             </div>
             <div id="gauge">
-
-                <div class="tituloGauge">Valor Atual</div>
+                <div class="tituloGauge">Média Atual dos Sensores</div>
             </div>
         </div>
 
 
     </div>
-    <div class="upload" style="display: none;">
+    <div id="uploadCsv" class="screen" style="display: none;">
         <input type="file" name="" id="">
+    </div>
+
+    <div id="download" class="screen" style="display: none;">
+        <h1>Página de Download</h1>
     </div>
 </body>
 
 </html>
+
+<script>
+
+    function sair(){
+        window.location.href = "Login";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        const screens = document.querySelectorAll('.screen');
+        
+        function showScreen(screenId) {
+            // Esconde todas as telas
+            screens.forEach(screen => {
+                screen.style.display = 'none';  // Oculta todas as telas
+            });
+            // Mostra a tela selecionada
+            if(screenId == "Dashboard"){
+                document.getElementById(screenId).style.display = 'grid';
+            } else{
+                document.getElementById(screenId).style.display = 'block';
+            }
+        }
+
+        // Adiciona eventos aos botões do menu lateral para mostrar a tela correspondente
+        document.getElementById('tela').addEventListener('click', () => showScreen('Dashboard'));
+        document.getElementById('tela2').addEventListener('click', () => showScreen('uploadCsv'));
+        document.getElementById('tela3').addEventListener('click', () => showScreen('download'));
+    });
+</script>
 
 <script>
     var gauge = new JustGage({
@@ -150,8 +184,8 @@ new Chart(ctx, {
         datasets: [{
             label: 'Valor',
             data: [80, 56, 77, 60],
-            borderColor: 'white', // Cor da linha (branca)
-            borderWidth: 5, // Grossura da linha
+            borderColor: 'white',
+            borderWidth: 5,
         }]
     },
     options: {
@@ -159,17 +193,17 @@ new Chart(ctx, {
             y: {
                 beginAtZero: true,
                 ticks: {
-                    color: 'white', // Cor dos valores no eixo Y (branco)
+                    color: 'white',
                     font: {
-                        size: 16 // Tamanho da fonte dos valores do eixo Y
+                        size: 16 
                     }
                 }
             },
             x: {
                 ticks: {
-                    color: 'white', // Cor dos valores no eixo X (datas, branco)
+                    color: 'white',
                     font: {
-                        size: 16 // Tamanho da fonte das datas no eixo X
+                        size: 16
                     }
                 }
             }
@@ -177,9 +211,9 @@ new Chart(ctx, {
         plugins: {
             legend: {
                 labels: {
-                    color: 'white', // Cor do rótulo da legenda (branco)
+                    color: 'white',
                     font: {
-                        size: 18 // Tamanho da fonte da legenda
+                        size: 18
                     }
                 }
             }

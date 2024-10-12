@@ -50,6 +50,14 @@ body {
 
 }
 
+.screen {
+  display: none;
+}
+
+.screen.active {
+  display: grid;
+}
+
 #menu {
   border-bottom: 5px solid aqua;
   width: 100%;
@@ -453,6 +461,12 @@ body {
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
+    }
+
+    & .tituloGraph{
+      color: #fff;
+      font-family: "Wix Madefor Display", system-ui;
     }
     
     & #myChart{
@@ -472,7 +486,7 @@ body {
 
       & .tituloGauge{
         margin-top: -170px;
-        font-size: 45px;
+        font-size: 37px;
         color: white;
         font-weight: 700;
         font-family: "Wix Madefor Display", system-ui;
