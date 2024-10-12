@@ -1,0 +1,592 @@
+@import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Wix+Madefor+Display:wght@400..800&display=swap');
+
+* {
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+  user-select: none;
+}
+
+body {
+  background: rgb(168, 168, 168);
+  background: linear-gradient(90deg, rgba(168, 168, 168, 1) 0%, rgba(186, 186, 186, 1) 25%, rgba(224, 224, 224, 1) 62%);
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: start;
+}
+
+
+.container {
+  width: 250px;
+  height: 100%;
+  position: relative;
+  display: flex;
+  z-index: 99;
+  align-items: start;
+  flex-direction: column;
+}
+
+#ativar {
+  position: absolute;
+  background-color: rgba(40, 40, 40, 0.725);
+  height: 100%;
+  width: 7dvw;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.line {
+  width: 100%;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+
+}
+
+#menu {
+  border-bottom: 5px solid aqua;
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  border: none;
+  margin-top: 10px;
+  height: 10%;
+
+  & button {
+    top: 25px;
+    left: 32px;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  & img {
+    width: 60px;
+  }
+
+  & #mainTitle {
+    font-family: "Montserrat", system-ui;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: aliceblue;
+    font-size: 28px;
+    position: relative;
+    left: 71px;
+    transition: all 0.3s ease;
+    height: 110%;
+    width: 80%;
+    font-weight: 700;
+  }
+}
+
+#ativar.active {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  position: absolute;
+  z-index: -1;
+  background-color: rgb(40 40 40 / 70%);
+  width: 250px;
+  ;
+}
+
+#menuItens.open {
+  color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  height: 25dvh;
+  width: 200px;
+  max-height: 500px;
+  transition: all 0.3s ease;
+}
+
+
+#menuItens i {
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: rgb(50 50 50 / 73%);
+  padding: 16px 20px;
+  transition: all 0.3s ease;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+#menuItens2 i {
+  font-size: 20px;
+  width: 62px;
+  max-width: 62px;
+  min-width: 62px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 10px;
+  background-color: rgb(50 50 50 / 73%);
+  padding: 16px 20px;
+  transition: all 0.3s ease;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+
+#menuItens {
+  position: relative;
+  top: 10px;
+  gap: 20px;
+  color: aliceblue;
+  width: 63px;
+  height: 25dvh;
+  display: flex;
+  align-items: start;
+  left: 30px;
+  flex-direction: column;
+  justify-content: start;
+  transition: all 0.3s ease;
+}
+
+#menuItens2 {
+  position: relative;
+  top: 10px;
+  gap: 20px;
+  color: aliceblue;
+  width: 63px;
+  height: 25dvh;
+  display: flex;
+  align-items: start;
+  left: 33px;
+  flex-direction: column;
+  justify-content: start;
+  transition: all 0.3s ease;
+}
+
+#menuItens.open li {
+  cursor: pointer;
+  width: 100%;
+  border-radius: 10px;
+  background-color: rgb(65 65 65 / 73%);
+  justify-content: start;
+  align-items: flex-start;
+  display: flex;
+}
+
+
+#menuItens li #titulo {
+  display: none;
+  height: 5dvh;
+  margin: 5px 10px;
+  justify-content: center;
+  font-family: "Wix Madefor Display", system-ui;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 500;
+  width: 100%;
+}
+
+#menuItens li #titulo2 {
+  display: none;
+  height: 5dvh;
+  margin: 5px 9px;
+  justify-content: center;
+  font-family: "Wix Madefor Display", system-ui;
+  align-items: center;
+  width: 100%;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+#menuItens li #titulo3 {
+  display: none;
+  width: 100%;
+  height: 5dvh;
+  margin: 5px 15px;
+  justify-content: center;
+  font-family: "Wix Madefor Display", system-ui;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+#menuItens2 li #titulo4 {
+  height: 75%;
+  display: none;
+  justify-content: center;
+  font-family: "Wix Madefor Display", system-ui;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 500;
+  width: 100%;
+}
+
+#menuItens2 li #titulo5 {
+  display: none;
+  width: 100%;
+  height: 75%;
+  justify-content: center;
+  font-family: "Wix Madefor Display", system-ui;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+#menuItens2 li #titulo6 {
+  height: 75%;
+  width: 100%;
+  display: none;
+  justify-content: center;
+  font-family: "Wix Madefor Display", system-ui;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+#config {
+  position: relative;
+  left: 35px;
+  top: 25px;
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  border: none;
+  height: 10%;
+
+  & button {
+    left: 3px;
+    position: relative;
+    height: 100%;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    width: 50px;
+
+    & svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  & #configNex {
+    margin-left: 1px;
+    font-family: "Montserrat", system-ui;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: aliceblue;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    height: 100%;
+    width: 55%;
+    font-weight: 500;
+  }
+}
+
+#menuItens2.open {
+  color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
+  height: 25dvh;
+  width: 200px;
+  max-height: 500px;
+  transition: all 0.3s ease;
+}
+
+#menuItens2 li {
+  height: 52px;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 10px;
+  background-color: rgb(65 65 65 / 73%);
+  justify-content: start;
+  align-items: flex-start;
+  display: flex;
+  transition: all 0.3s ease;
+}
+
+
+#menuItens2 li h4 {
+  display: none;
+  height: 5dvh;
+  margin: 5px 10px;
+  justify-content: center;
+  font-family: "Wix Madefor Display", system-ui;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+#menuItens2.open li h4 {
+  display: flex;
+}
+
+
+.highContentNex {
+  gap: 20px;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 8% 15% 67%;
+  top: 25px;
+  height: 100%;
+  z-index: 98;
+  margin: 0 auto;
+  width: 90dvw;
+  right: 30px;
+  position: fixed;
+  border-radius: 10px;
+
+  & .NamePage {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    & .currentPage {
+      display: flex;
+      border-radius: 10px;
+      width: 24%;
+      height: 90%;
+      background-color: #000000b9;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      font-weight: 700;
+      color: #fff;
+      font-family: "Wix Madefor Display", system-ui;
+  }
+
+  & .periodo{
+    background-color: #000000b9;
+    height: 70%;
+    display: flex;
+    justify-content: start;
+    width: 200px;
+    align-items: center;
+    border-radius: 35px;
+
+    & .btnPeriodo{
+      width: 25%;
+      height: 100%;
+      background-color: transparent;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-family: "Wix Madefor Display", system-ui;
+      font-weight: 700;
+    }
+    & .btnPeriodo:hover{
+      background-color: #797979b9;
+    }
+  }
+
+    & .information {
+      gap: 5px;
+      width: 24%;
+      height: 90%;
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      border-radius: 10px;
+
+      & .field {
+        width: 66%;
+        height: 90%;
+        border-radius: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(208, 208, 208);
+
+        & marquee {
+          width: 95%;
+          font-size: 20px;
+          height: 100%;
+          display: flex;
+          font-family: "Wix Madefor Display", system-ui;
+          justify-content: center;
+          align-items: center;
+          color: #0022ff;
+        }
+      }
+
+      & .perfil {
+        width: 15%;
+        height: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        border: 4px solid #000000b9;;
+        background-color: rgb(120, 120, 120);
+      }
+    }
+  }
+
+  & .dadosAtuais {
+    position: relative;
+    top: 60px;
+    display: flex;
+    width: 100.3%;
+    height: 90%;
+    display: flex;
+    justify-content: space-between;
+
+    & .historico{
+      width: 69%;
+      height: 100%;
+      background-color: #000000b9;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    & #myChart{
+      width: 85%;
+      height: 85%;
+    }
+
+    & #gauge{
+      width: 30%;
+      height: 100%;
+      background-color: #000000b9;
+      border-radius: 10px;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      flex-direction: column;
+
+      & .tituloGauge{
+        margin-top: -170px;
+        font-size: 45px;
+        color: white;
+        font-weight: 700;
+        font-family: "Wix Madefor Display", system-ui;
+      }
+    }
+}
+
+  & .Kpis {
+    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 24.2%);
+
+
+    & .cardKpis {
+      height: 200px;
+      border-radius: 10px;
+      background-color: #000000b9;
+
+      & .containerKPItitulo {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        display: grid;
+        grid-template-rows: 35% 65%;
+
+        & .titleKpi {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          color: #fff;
+          font-size: 25px;
+          font-family: "Wix Madefor Display", system-ui;
+          font-weight: 700;
+        }
+
+        & .insight {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: #fff;
+          font-size: 45px;
+          font-family: "Wix Madefor Display", system-ui;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  & .Graphics {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 75% 24.2%;
+    grid-template-rows: 45% 52%;
+
+    & .GraphicDash {
+      border-radius: 10px;
+      background-color: #000000b9;
+
+
+    }
+
+    & .GraphicDash:nth-child(1) {
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      grid-template-columns: repeat(3, 32%);
+
+      & .consumo {
+        height: 95%;
+        width: 100%;
+        border-radius: 10px;
+
+      }
+    }
+
+    & .GraphicDash:nth-child(2) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      & .EmissaoCo2 {
+        height: 95%;
+        border-radius: 10px;
+        width: 96%;
+        background-color: #ffffff38;
+      }
+    }
+
+    & .GraphicDash:nth-child(3) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      & .historicoConsumo {
+        height: 94%;
+        border-radius: 10px;
+        width: 98%;
+        background-color: #ffffff38;
+      }
+    }
+
+    & .GraphicDash:nth-child(4) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      & .Three {
+        height: 95%;
+        border-radius: 10px;
+        width: 96%;
+        background-color: #ffffff38;
+      }
+    }
+  }
+}
