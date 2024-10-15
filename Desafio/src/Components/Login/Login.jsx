@@ -22,10 +22,11 @@ const Login = () => {
 
   return (
     <div>
-      <h1 className="titulo">DataView</h1>
+      <h1 className="tituloh1">Seja Bem Vindo</h1>
       <div className="container">
         <form onSubmit={handleSubmit}>
-          <h1>Acesse o sistema</h1>
+          <h1>Acesse o DataView</h1>
+          <h3>A melhor plataforma de monitoramento de dados</h3>
           <div className="input-field">
             <input
               type="text"
@@ -47,13 +48,9 @@ const Login = () => {
             <FaLock className="icon" />
           </div>
 
-          <div className="recall-forget">
-            <label>
-              <input type="checkbox" />
-              Lembrar de mim
-            </label>
-            <a href="#">Esqueceu sua senha?</a>
-          </div>
+          {/* <div className="EsqSenha">
+          <a href="#">Esqueceu sua senha?</a>
+        </div> */}
           <button type="submit">Login</button>
         </form>
       </div>

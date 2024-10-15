@@ -22,22 +22,43 @@
   display: flex;
   height: 420px;
   animation: slideDown 1s ease forwards;
+  font-family: "Wix Madefor Display", system-ui;
+  font-weight: 700;
 }
 
 form{
   width: 100%;
 }
 
+.tituloh1{
+  font-size: 45px;
+  text-align: center;
+  animation: slideDown 1s ease forwards;
+  margin-bottom: 30px;
+  font-weight: 700;
+  font-family: "Wix Madefor Display", system-ui;
+}
+
+h3{
+  text-align: center;
+  font-size: 20px;
+  color: #ffff;
+  font-family: "Wix Madefor Display", system-ui;
+  margin-top: 5px;
+}
+
 .container h1 {
   text-align: center;
-  font-size: 30px;
+  font-size: 37px;
   color: #ffff;
+  font-family: "Wix Madefor Display", system-ui;
 }
 
 .titulo{
   font-size: 50px;
   text-align: center;
   animation: slideDown 1s ease forwards;
+  font-family: "Wix Madefor Display", system-ui;
 }
 
 .container .input-field {
@@ -72,24 +93,24 @@ form{
   color: #fff;
 }
 
-.container .recall-forget {
+.container .EsqSenha {
   display: flex;
   justify-content: space-between;
   font-size: 14.5px;
-  margin: -15px 0 15px;
+  margin: -15px 20px 15px;
 }
 
-.recall-forget label input {
+.EsqSenha label input {
   accent-color: #fff;
   margin-right: 4px;
 }
 
-.recall-forget a {
+.EsqSenha a {
   color: #fff;
   text-decoration: none;
 }
 
-.recall-forget a:hover {
+.EsqSenha a:hover {
   text-decoration: underline;
 }
 
@@ -106,6 +127,7 @@ form{
   color: #333;
   font-weight: 700;
   text-shadow: none;
+  font-family: "Wix Madefor Display", system-ui;
 }
 
 .container .signup-link {

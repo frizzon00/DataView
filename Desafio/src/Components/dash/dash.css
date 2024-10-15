@@ -109,7 +109,7 @@ body {
   flex-direction: column;
   position: absolute;
   z-index: -1;
-  background-color: rgb(40 40 40 / 70%);
+  background-color: rgb(40 40 40 / 95%);
   width: 250px;
   ;
 }
@@ -164,6 +164,7 @@ body {
   flex-direction: column;
   justify-content: start;
   transition: all 0.3s ease;
+  margin-top: 40px;
 }
 
 #menuItens2 {
@@ -172,12 +173,12 @@ body {
   gap: 20px;
   color: aliceblue;
   width: 63px;
-  height: 25dvh;
+  height: 51.6dvh;
   display: flex;
   align-items: start;
   left: 33px;
   flex-direction: column;
-  justify-content: start;
+  justify-content: end;
   transition: all 0.3s ease;
 }
 
@@ -305,10 +306,10 @@ body {
 #menuItens2.open {
   color: rgb(255, 255, 255);
   display: flex;
-  justify-content: start;
+  justify-content: end;
   align-items: start;
   flex-direction: column;
-  height: 25dvh;
+  height: 52dvh;
   width: 200px;
   max-height: 500px;
   transition: all 0.3s ease;
@@ -395,10 +396,19 @@ body {
       cursor: pointer;
       font-family: "Wix Madefor Display", system-ui;
       font-weight: 700;
+
+    
     }
+    & .btnPeriodo.active {
+      background-color: #ffffffb9;
+      color: black;
+  }
+
     & .btnPeriodo:hover{
-      background-color: #797979b9;
+      background-color: #8f8f8fb9;
     }
+
+    
   }
 
     & .information {
@@ -467,6 +477,8 @@ body {
     & .tituloGraph{
       color: #fff;
       font-family: "Wix Madefor Display", system-ui;
+      margin-top: 3px;
+      margin-bottom: 35px;
     }
     
     & #myChart{
@@ -535,72 +547,144 @@ body {
       }
     }
   }
-
-  & .Graphics {
-    display: grid;
-    gap: 20px;
-    grid-template-columns: 75% 24.2%;
-    grid-template-rows: 45% 52%;
-
-    & .GraphicDash {
-      border-radius: 10px;
-      background-color: #000000b9;
+}
 
 
-    }
+/* Pagina de Download */
 
-    & .GraphicDash:nth-child(1) {
-      display: grid;
-      justify-content: center;
-      align-items: center;
-      gap: 15px;
-      grid-template-columns: repeat(3, 32%);
+#download{
+  display: none;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  color: #fff;
+  font-family: "Wix Madefor Display", system-ui;
 
-      & .consumo {
-        height: 95%;
-        width: 100%;
-        border-radius: 10px;
+  & .containerDown{
+    width: 60%;
+    height: 80%;
+    font-family: "Wix Madefor Display", system-ui;
+    border-radius: 10px;
+    background-color: #000000b9;
+    padding: 40px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    gap: 15%;
 
-      }
-    }
-
-    & .GraphicDash:nth-child(2) {
+    & .options{
       display: flex;
-      justify-content: center;
+      flex-direction: row;
+      gap: 10%;
       align-items: center;
-
-      & .EmissaoCo2 {
-        height: 95%;
-        border-radius: 10px;
-        width: 96%;
-        background-color: #ffffff38;
-      }
-    }
-
-    & .GraphicDash:nth-child(3) {
-      display: flex;
       justify-content: center;
-      align-items: center;
+      margin: 30px;
 
-      & .historicoConsumo {
-        height: 94%;
+      & button{
+        color: #fff;
+        font-family: "Wix Madefor Display", system-ui;
+        font-weight: 700;
         border-radius: 10px;
-        width: 98%;
-        background-color: #ffffff38;
-      }
-    }
-
-    & .GraphicDash:nth-child(4) {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      & .Three {
-        height: 95%;
-        border-radius: 10px;
-        width: 96%;
-        background-color: #ffffff38;
+        background-color: #797979b9;
+        border: none;
+        cursor: pointer;
+        padding: 15px 40px;
       }
     }
   }
+
+  & .infoDown{
+    text-align: center;
+    font-size: 25px;
+    font-family: "Wix Madefor Display", system-ui;
+    font-weight: 700;
+    color: #fff;
+  }
+}
+
+#uploadCsv{
+  display: none;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  color: #fff;
+  font-family: "Wix Madefor Display", system-ui;
+
+}
+
+#uploadCsv .containerDown {
+  width: 60%;
+  height: 80%;
+  font-family: "Wix Madefor Display", system-ui;
+  border-radius: 10px;
+  background-color: #000000b9;
+  padding: 40px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 15%;
+}
+
+.infoDown{
+  text-align: center;
+  font-size: 25px;
+  font-family: "Wix Madefor Display", system-ui;
+  font-weight: 700;
+  color: #fff;
+}
+
+.upload-container {
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  margin-top: -40px;
+  padding: 85px;
+  background-color: #797979b9;
+  position: relative;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.upload-container img {
+  width: 80px;
+  margin-bottom: 20px;
+}
+
+.upload-container button {
+  background-color: #2f2e2eb9;
+  color: #fff;
+  font-weight: 700;
+  font-family: "Wix Madefor Display", system-ui;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.upload-container input {
+  color: #fff;
+  font-weight: 700;
+  font-family: "Wix Madefor Display", system-ui;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #797979b9;
 }
