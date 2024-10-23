@@ -18,6 +18,7 @@ function uploadCSV() {
 }
 
 function processCSV(csvData) {
+    const input = document.getElementById('csvFileInput');
     const rows = csvData.split('\n').map(row => row.trim());  // Divide o CSV por linha e remove espaços
     const parsedData = rows.map(row => {
         const values = row.split(',');
@@ -71,6 +72,7 @@ function processCSV(csvData) {
                 });
             } else {
                 alert('CSV inserido com sucesso no banco de dados!');
+                input.value = "";
             }
         })
         .catch(error => {

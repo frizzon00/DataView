@@ -57,31 +57,55 @@ function gerarPDF(readings, periodo) {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
 
-    const pageWidth = doc.internal.pageSize.getWidth();  // Pega a Largura da pagina
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
 
-    // Texto do título
-    const title = `Leituras dos Sensores - Últimos ${periodo}`;
-    const titleWidth = doc.getTextWidth(title);
-    const titleX = (pageWidth - titleWidth) / 2;
-    doc.text(title, titleX, 10);  // Centraliza os Titulos
+    // Margens
+    const marginTop = 10;
+    const marginBottom = 20;
+    const lineHeight = 10;
 
-    // Texto do cabeçalho das colunas
-    const header = 'Equipamento | Data/Hora | Valor';
-    const headerWidth = doc.getTextWidth(header); 
-    const headerX = (pageWidth - headerWidth) / 2;  
-    doc.text(header, headerX, 20);  // Centraliza o Cabecalho
+    let currentY = marginTop;
 
-    // Centralizar as leituras
+    // Função para adicionar o cabeçalho
+    const adicionarCabecalho = () => {
+        // Adiciona o título
+        const title = `Leituras dos Sensores - Últimos ${periodo}`;
+        const titleWidth = doc.getTextWidth(title);
+        const titleX = (pageWidth - titleWidth) / 2;
+        doc.text(title, titleX, marginTop);
+        currentY = marginTop + lineHeight;
+
+        // Adiciona o cabeçalho das colunas
+        const header = 'Equipamento | Data/Hora | Valor';
+        const headerWidth = doc.getTextWidth(header);
+        const headerX = (pageWidth - headerWidth) / 2;
+        doc.text(header, headerX, currentY);
+        currentY += lineHeight;
+    };
+
+    // Adiciona o cabeçalho inicial
+    adicionarCabecalho();
+
+    // Adiciona as leituras
     readings.forEach((reading, index) => {
+        // Verifica se a posição ultrapassou o limite da página
+        if (currentY + lineHeight > pageHeight - marginBottom) {
+            doc.addPage();  // Adiciona uma nova página
+            adicionarCabecalho();  // Adiciona o cabeçalho na nova página
+        }
+
         const linha = `${reading.equipment_id} | ${reading.timestamp} | ${reading.value}`;
         const linhaWidth = doc.getTextWidth(linha);
         const linhaX = (pageWidth - linhaWidth) / 2;
-        doc.text(linha, linhaX, 30 + index * 10);  // Centraliza as Leituras
+        doc.text(linha, linhaX, currentY);
+        currentY += lineHeight;
     });
 
-    // Baixar o PDF
+    // Baixa o PDF
     doc.save(`Leituras-${periodo}.pdf`);
 }
+
 
 
 function gerarXLSX(readings, periodo) {

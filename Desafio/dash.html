@@ -8,10 +8,6 @@
     <link rel="stylesheet" href="./src/Components/dash/dash.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="icon" href="/src/assets/dataView.png" type="image/png">
-    <script src="https://kit.fontawesome.com/17011d8c1f.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/raphael@2.3.0/raphael.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/justgage@1.4.0/dist/justgage.min.js"></script>
 </head>
 
 <body>
@@ -38,7 +34,7 @@
             <div class="line">
                 <div class="lines"></div>
             </div>
-           
+
             <ul id="menuItens2">
                 <li onclick="sair()">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
@@ -52,11 +48,11 @@
         <div class="NamePage">
             <div class="currentPage">Dashboard Gás & Oléo</div>
             <div class="periodo">
-                <button class="btnPeriodo active"
+                <button class="btnPeriodo active" id="btn24h"
                     style="border-top-left-radius: 35px; border-bottom-left-radius: 35px;">24h</button>
-                <button class="btnPeriodo">48h</button>
-                <button class="btnPeriodo">7D</button>
-                <button class="btnPeriodo"
+                <button class="btnPeriodo" id="btn48h">48h</button>
+                <button class="btnPeriodo" id="btn7d">7D</button>
+                <button class="btnPeriodo" id="btn1m"
                     style="border-top-right-radius: 35px; border-bottom-right-radius: 35px;">1M</button>
             </div>
             <div class="information">
@@ -69,25 +65,25 @@
             <div class="cardKpis">
                 <div class="containerKPItitulo">
                     <div class="titleKpi">Valor Médio do Periodo</div>
-                    <div class="insight" id="mediaValor">Carregando...</div>
+                    <div class="insight" id="mediaValor">0.0</div>
                 </div>
             </div>
             <div class="cardKpis">
                 <div class="containerKPItitulo">
                     <div class="titleKpi">Maior Valor Registrado </div>
-                    <div class="insight" id="maxValue">200.45</div>
+                    <div class="insight" id="maxValue">0.0</div>
                 </div>
             </div>
             <div class="cardKpis">
                 <div class="containerKPItitulo">
                     <div class="titleKpi">Menor Valor Registrado</div>
-                    <div class="insight" id="minValue">20.99</div>
+                    <div class="insight" id="minValue">0.0</div>
                 </div>
             </div>
             <div class="cardKpis">
                 <div class="containerKPItitulo">
                     <div class="titleKpi">Sensor com Maior Média</div>
-                    <div class="insight" id="sensorMaxAvg"> EQ-1990</div>
+                    <div class="insight" id="sensorMaxAvg"> - </div>
                 </div>
             </div>
         </div>
@@ -150,6 +146,10 @@
 
 </html>
 
+<script src="https://kit.fontawesome.com/17011d8c1f.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/raphael@2.3.0/raphael.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/justgage@1.4.0/dist/justgage.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="./backend/downloads.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -161,3 +161,4 @@
 <script src="./backend/sensorMaior.js"></script>
 <script src="./backend/navbar.js"></script>
 <script src="./backend/upload.js"></script>
+<script src="./backend/periodo.js"></script>

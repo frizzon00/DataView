@@ -1,6 +1,7 @@
 import { GraphQLObjectType, GraphQLSchema, GraphQLFloat, GraphQLString, GraphQLList, GraphQLInt, GraphQLInputObjectType, GraphQLBoolean } from 'graphql';
 import mysql from 'mysql2';
 
+// Conexão com MySQL
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -8,7 +9,7 @@ const db = mysql.createConnection({
     database: 'radix'
 });
 
-// maior valor
+// Definição do tipo para o maior valor
 const MaxValueType = new GraphQLObjectType({
     name: 'MaxValue',
     fields: () => ({
@@ -16,7 +17,7 @@ const MaxValueType = new GraphQLObjectType({
     }),
 });
 
-// menor valor
+// Definição do tipo para o menor valor
 const MinValueType = new GraphQLObjectType({
     name: 'MinValue',
     fields: () => ({
@@ -24,7 +25,7 @@ const MinValueType = new GraphQLObjectType({
     }),
 });
 
-// média geral
+// Definição do tipo para a média geral
 const MediaType = new GraphQLObjectType({
     name: 'Media',
     fields: () => ({
@@ -32,7 +33,7 @@ const MediaType = new GraphQLObjectType({
     }),
 });
 
-// sensor com maior média
+// Definição do tipo para o sensor com maior média
 const SensorWithMaxAvgType = new GraphQLObjectType({
     name: 'SensorWithMaxAvg',
     fields: () => ({
@@ -41,7 +42,7 @@ const SensorWithMaxAvgType = new GraphQLObjectType({
     }),
 });
 
-// medias das ultimas 5 horas
+// Definição do tipo para as leituras por hora (gráfico de linha)
 const SensorReadingsByHourType = new GraphQLObjectType({
     name: 'SensorReadingsByHour',
     fields: () => ({
@@ -50,7 +51,7 @@ const SensorReadingsByHourType = new GraphQLObjectType({
     }),
 });
 
-// média da hora atual
+// Definição do tipo para a média da hora atual (gauge)
 const MediaCurrentHourType = new GraphQLObjectType({
     name: 'MediaCurrentHour',
     fields: () => ({
@@ -58,7 +59,7 @@ const MediaCurrentHourType = new GraphQLObjectType({
     }),
 });
 
-// download pdf, xlsx, csv
+// Definição do tipo para as leituras de sensores
 const SensorReadingsType = new GraphQLObjectType({
     name: 'SensorReadings',
     fields: () => ({
@@ -68,7 +69,7 @@ const SensorReadingsType = new GraphQLObjectType({
     }),
 });
 
-// insert CSV
+// Definição do tipo de input para upload de CSV
 const SensorInputType = new GraphQLInputObjectType({
     name: 'SensorInput',
     fields: {
@@ -82,65 +83,127 @@ const SensorInputType = new GraphQLInputObjectType({
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
-        // maior valor
+        // Maior valor com período
         maxValueSensor: {
             type: MaxValueType,
+            args: { period: { type: GraphQLString } },
             resolve(parent, args) {
+                let interval;
+                switch (args.period) {
+                    case '24h': interval = '1 DAY'; break;
+                    case '48h': interval = '2 DAY'; break;
+                    case '7d': interval = '7 DAY'; break;
+                    case '1m': interval = '1 MONTH'; break;
+                    default: interval = '1 DAY';  // Padrão 24 horas
+                }
                 return new Promise((resolve, reject) => {
-                    const query = 'SELECT MAX(value) AS max_value FROM sensor_readings';
+                    const query = `SELECT MAX(value) AS max_value FROM sensor_readings WHERE timestamp >= NOW() - INTERVAL ${interval}`;
                     db.query(query, (err, results) => {
-                        if (err) reject(err);  // Erro
-                        resolve(results[0]);  // resultado
+                        if (err) reject(err);
+                        resolve(results[0]);
                     });
                 });
             }
         },
-        // menor valor
+        // Menor valor com período
         minValueSensor: {
             type: MinValueType,
+            args: { period: { type: GraphQLString } },
             resolve(parent, args) {
+                let interval;
+                switch (args.period) {
+                    case '24h': interval = '1 DAY'; break;
+                    case '48h': interval = '2 DAY'; break;
+                    case '7d': interval = '7 DAY'; break;
+                    case '1m': interval = '1 MONTH'; break;
+                    default: interval = '1 DAY';  // Padrão 24 horas
+                }
                 return new Promise((resolve, reject) => {
-                    const query = 'SELECT MIN(value) AS minValue FROM sensor_readings';
+                    const query = `SELECT MIN(value) AS minValue FROM sensor_readings WHERE timestamp >= NOW() - INTERVAL ${interval}`;
                     db.query(query, (err, results) => {
-                        if (err) reject(err);  // Erro
-                        resolve(results[0]);  // resultado
+                        if (err) reject(err);
+                        resolve(results[0]);
                     });
                 });
             }
         },
-        // média geral
+        // Média geral com período
         mediaSensor: {
             type: MediaType,
+            args: { period: { type: GraphQLString } },
             resolve(parent, args) {
+                let interval;
+                switch (args.period) {
+                    case '24h': interval = '1 DAY'; break;
+                    case '48h': interval = '2 DAY'; break;
+                    case '7d': interval = '7 DAY'; break;
+                    case '1m': interval = '1 MONTH'; break;
+                    default: interval = '1 DAY';  // Padrão 24 horas
+                }
                 return new Promise((resolve, reject) => {
-                    const query = 'SELECT ROUND(AVG(value), 2) AS media FROM sensor_readings';
+                    const query = `SELECT ROUND(AVG(value), 2) AS media FROM sensor_readings WHERE timestamp >= NOW() - INTERVAL ${interval}`;
                     db.query(query, (err, results) => {
-                        if (err) reject(err);  // Erro
-                        resolve(results[0]);  // resultado
+                        if (err) reject(err);
+                        resolve(results[0]);
                     });
                 });
             }
         },
-        // sensor com maior média
+        // Sensor com maior média com período
         sensorWithMaxAvg: {
             type: SensorWithMaxAvgType,
+            args: { period: { type: GraphQLString } },
             resolve(parent, args) {
+                let interval;
+                switch (args.period) {
+                    case '24h': interval = '1 DAY'; break;
+                    case '48h': interval = '2 DAY'; break;
+                    case '7d': interval = '7 DAY'; break;
+                    case '1m': interval = '1 MONTH'; break;
+                    default: interval = '1 DAY';  // Padrão 24 horas
+                }
                 return new Promise((resolve, reject) => {
                     const query = `
                         SELECT equipment_id, ROUND(AVG(value), 2) AS avgValue
                         FROM sensor_readings
+                        WHERE timestamp >= NOW() - INTERVAL ${interval}
                         GROUP BY equipment_id
                         ORDER BY avgValue DESC
                         LIMIT 1
                     `;
                     db.query(query, (err, results) => {
-                        if (err) reject(err);  // Erro
-                        resolve(results[0]);  // resultado
+                        if (err) reject(err);
+                        resolve(results[0]);
                     });
                 });
             }
         },
-        // média por hora (gráfico de linha)
+        // Leitura por período para download de arquivos
+        sensorReadingsByPeriod: {
+            type: new GraphQLList(SensorReadingsType),
+            args: { period: { type: GraphQLString } },
+            resolve(parent, args) {
+                let interval;
+                switch (args.period) {
+                    case '24h': interval = '1 DAY'; break;
+                    case '48h': interval = '2 DAY'; break;
+                    case '7d': interval = '7 DAY'; break;
+                    case '1m': interval = '1 MONTH'; break;
+                    default: interval = '1 DAY';  // Padrão 24 horas
+                }
+                return new Promise((resolve, reject) => {
+                    const query = `
+                        SELECT equipment_id, DATE_FORMAT(timestamp, '%Y-%m-%d %H:%i:%s') AS timestamp, value
+                        FROM sensor_readings
+                        WHERE timestamp >= NOW() - INTERVAL ${interval}
+                    `;
+                    db.query(query, (err, results) => {
+                        if (err) reject(err);
+                        resolve(results);
+                    });
+                });
+            }
+        },
         sensorReadingsByHour: {
             type: new GraphQLList(SensorReadingsByHourType),
             args: {
@@ -221,51 +284,44 @@ const RootQuery = new GraphQLObjectType({
                     });
                 });
             }
-        },
+        }
     }
 });
 
-        // Upload CSV
-        const RootMutation = new GraphQLObjectType({
-            name: 'Mutation',
-            fields: {
-                insertSensorReadings: {
-                    type: new GraphQLObjectType({
-                        name: 'InsertResponse',
-                        fields: {
-                            success: { type: GraphQLBoolean }
-                        }
-                    }),
-                    args: {
-                        input: { type: new GraphQLList(SensorInputType) }
-                    },
-                    resolve(parent, args) {
-                        console.log('Dados recebidos para inserção:', args.input);  // log com os dados
-
-                        return new Promise((resolve, reject) => {
-                            const values = args.input.map(sensor => [
-                                sensor.equipment_id,
-                                sensor.timestamp,
-                                sensor.value
-                            ]);
-
-                            const query = 'INSERT INTO sensor_readings (equipment_id, timestamp, value) VALUES ?';
-
-                            db.query(query, [values], (err, result) => {
-                                if (err) {
-                                    console.error('Erro ao inserir no banco de dados:', err);  // log de erro
-                                    reject(err);
-                                } else {
-                                    resolve({ success: true });
-                                }
-                            });
-                        });
-                    }
+// Mutação para Upload de CSV
+const RootMutation = new GraphQLObjectType({
+    name: 'Mutation',
+    fields: {
+        insertSensorReadings: {
+            type: new GraphQLObjectType({
+                name: 'InsertResponse',
+                fields: {
+                    success: { type: GraphQLBoolean }
                 }
-            }
-        });
+            }),
+            args: {
+                input: { type: new GraphQLList(SensorInputType) }
+            },
+            resolve(parent, args) {
+                return new Promise((resolve, reject) => {
+                    const values = args.input.map(sensor => [
+                        sensor.equipment_id,
+                        sensor.timestamp,
+                        sensor.value
+                    ]);
 
-// Exportar o Schema com as queries e as mutações que o usuario pode fazer
+                    const query = 'INSERT INTO sensor_readings (equipment_id, timestamp, value) VALUES ?';
+                    db.query(query, [values], (err) => {
+                        if (err) reject(err);
+                        resolve({ success: true });
+                    });
+                });
+            }
+        }
+    }
+});
+
+// Exportar o Schema
 export default new GraphQLSchema({
     query: RootQuery,
     mutation: RootMutation

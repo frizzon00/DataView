@@ -1,8 +1,8 @@
 var gauge = new JustGage({
     id: "gauge",
-    value: 50,
+    value: 0,
     min: 0,
-    max: 100,
+    max: 200,
     valueFontColor: "#FFFFFF",
     labelFontColor: "#FFFFFF",
     levelColors: [
