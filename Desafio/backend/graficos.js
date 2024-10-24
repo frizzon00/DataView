@@ -20,7 +20,7 @@ const ctx = document.getElementById('myChart').getContext('2d');
         data: {
             labels: [],
             datasets: [{
-                label: 'Média por Hora',
+                label: 'Média por Hora (ºC)',
                 data: [], 
                 borderColor: 'white',
                 borderWidth: 5,
@@ -51,7 +51,7 @@ const ctx = document.getElementById('myChart').getContext('2d');
                     labels: {
                         color: 'white',
                         font: {
-                            size: 18
+                            size: 15
                         }
                     }
                 }

@@ -29,7 +29,7 @@ function baixarLeituras(formato) {
     })
         .then(response => response.json())
         .then(data => {
-            console.log('Dados retornados:', data);  // console dos dados retornados
+            console.log('Dados retornados:', data);  // dados retornados
 
             if (data && data.data && data.data.sensorReadingsByPeriod) {
                 const readings = data.data.sensorReadingsByPeriod;
@@ -67,16 +67,13 @@ function gerarPDF(readings, periodo) {
 
     let currentY = marginTop;
 
-    // Função para adicionar o cabeçalho
     const adicionarCabecalho = () => {
-        // Adiciona o título
         const title = `Leituras dos Sensores - Últimos ${periodo}`;
         const titleWidth = doc.getTextWidth(title);
         const titleX = (pageWidth - titleWidth) / 2;
         doc.text(title, titleX, marginTop);
         currentY = marginTop + lineHeight;
 
-        // Adiciona o cabeçalho das colunas
         const header = 'Equipamento | Data/Hora | Valor';
         const headerWidth = doc.getTextWidth(header);
         const headerX = (pageWidth - headerWidth) / 2;
@@ -84,15 +81,13 @@ function gerarPDF(readings, periodo) {
         currentY += lineHeight;
     };
 
-    // Adiciona o cabeçalho inicial
     adicionarCabecalho();
 
-    // Adiciona as leituras
     readings.forEach((reading, index) => {
         // Verifica se a posição ultrapassou o limite da página
         if (currentY + lineHeight > pageHeight - marginBottom) {
-            doc.addPage();  // Adiciona uma nova página
-            adicionarCabecalho();  // Adiciona o cabeçalho na nova página
+            doc.addPage();
+            adicionarCabecalho();
         }
 
         const linha = `${reading.equipment_id} | ${reading.timestamp} | ${reading.value}`;

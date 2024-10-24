@@ -17,6 +17,7 @@ function uploadCSV() {
     reader.readAsText(file);
 }
 
+ /* Formatação do Arquivo Enviado */
 function processCSV(csvData) {
     const input = document.getElementById('csvFileInput');
     const rows = csvData.split('\n').map(row => row.trim());  // Divide o CSV por linha e remove espaços
@@ -60,16 +61,7 @@ function processCSV(csvData) {
         .then(data => {
             console.log('Resultado do upload:', data);
             if (data.errors) {
-                console.error('Erro ao inserir:', data.errors);
-                data.errors.forEach((error, index) => {
-                    console.error(`Erro ${index + 1}:`, error.message);
-                    if (error.locations) {
-                        console.error('Local do erro:', error.locations);
-                    }
-                    if (error.path) {
-                        console.error('Caminho do erro:', error.path);
-                    }
-                });
+                console.error('Erro ao inserir:', data.errors);;
             } else {
                 alert('CSV inserido com sucesso no banco de dados!');
                 input.value = "";

@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('.btnPeriodo');
     let selectedPeriod = '24h'; // Período padrão
+    
+
 
     buttons.forEach(button => {
         button.addEventListener('click', function() {
@@ -9,8 +11,13 @@ document.addEventListener('DOMContentLoaded', () => {
             this.classList.add('active'); // Adiciona o 'active'
 
             atualizarDados(selectedPeriod); // função para atualizar os dados
+            document.getElementById('mediaGeral').innerHTML = `Média Geral (${selectedPeriod})`
+            document.getElementById('menorTemp').innerHTML = `Menor Temperatura Registrada  (${selectedPeriod})`
+            document.getElementById('maiorTemp').innerHTML = `Maior Temperatura Registrada (${selectedPeriod})`
+            document.getElementById('maiorSensor').innerHTML = `Sensor com Maior Média (${selectedPeriod})`
         });
     });
+
 
     // atualizar os dados com base no período selecionado
     function atualizarDados(period) {
@@ -32,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             if (data && data.data && data.data.maxValueSensor) {
                 const maxValue = data.data.maxValueSensor.max_value;
-                document.getElementById('maxValue').textContent = maxValue;
+                document.getElementById('maxValue').innerHTML = `${maxValue} ºC`;
             } else {
                 console.error('Estrutura de dados inesperada:', data);
             }
@@ -57,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             if (data && data.data && data.data.minValueSensor) {
                 const minValue = data.data.minValueSensor.minValue;
-                document.getElementById('minValue').textContent = minValue;
+                document.getElementById('minValue').innerHTML = `${minValue} ºC`;
             } else {
                 console.error('Estrutura de dados inesperada:', data);
             }
@@ -82,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             if (data && data.data && data.data.mediaSensor) {
                 const media = data.data.mediaSensor.media;
-                document.getElementById('mediaValor').textContent = media;
+                document.getElementById('mediaValor').innerHTML = `${media} ºC`;;
             } else {
                 console.error('Estrutura de dados inesperada:', data);
             }

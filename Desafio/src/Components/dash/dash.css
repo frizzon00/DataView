@@ -533,6 +533,7 @@ body {
           font-size: 25px;
           font-family: "Wix Madefor Display", system-ui;
           font-weight: 700;
+          padding-top: 15px;
         }
 
         & .insight {
